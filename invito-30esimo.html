@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invito 30esimo</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap');
+
+      :root {
+        --bg: #050505;
+        --panel: rgba(10, 10, 10, 0.72);
+        --gold: #d4af37;
+        --gold-soft: #f3d98d;
+        --gold-deep: #b88a1a;
+        --white: #f5f1e8;
+        --muted: #e7dcc2;
+        --line: rgba(212, 175, 55, 0.4);
+        --shadow: 0 18px 50px rgba(0, 0, 0, 0.42);
+      }
+
+      * { box-sizing: border-box; }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      section {
+        transition: transform 0.35s ease, box-shadow 0.35s ease, opacity 0.35s ease;
+      }
+
+      section:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 18px 28px rgba(0,0,0,0.18);
+      }
+
+      body {
+        margin: 0;
+        font-family: "Libre Baskerville", Georgia, serif;
+        background: var(--bg);
+        color: var(--white);
+      }
+
+      .page {
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .hero {
+        position: relative;
+        width: 100vw;
+        min-height: 42vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 36px 24px 22px;
+        background: #000;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        margin-top: 18px;
+      }
+
+      .hero-content {
+        width: min(100%, 760px);
+        text-align: center;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        color: var(--gold-soft);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 8px 16px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 0.66rem;
+        background: rgba(212, 175, 55, 0.08);
+      }
+
+      h1 {
+        margin: 10px 0 20px;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(1.9rem, 3.2vw, 3.3rem);
+        line-height: 0.95;
+        letter-spacing: 0.03em;
+        color: var(--gold-soft);
+        text-transform: uppercase;
+        text-shadow: 0 4px 18px rgba(0,0,0,0.28);
+      }
+
+      .gold {
+        color: var(--gold-soft);
+      }
+
+      .cta-row {
+        display: flex;
+        justify-content: center;
+        margin-top: auto;
+        margin-bottom: 12px;
+        padding-top: 30px;
+      }
+
+      .cta,
+      .submit-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--gold);
+        background: linear-gradient(180deg, #d7b45a 0%, var(--gold) 100%);
+        color: #1d1d1d;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        padding: 12px 22px;
+        border-radius: 999px;
+        box-shadow: 0 10px 26px rgba(212, 175, 55, 0.28);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        cursor: pointer;
+        font-family: "Libre Baskerville", Georgia, serif;
+        font-size: 0.82rem;
+      }
+
+      .cta:hover,
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px rgba(212, 175, 55, 0.38);
+      }
+
+      .section-shell {
+        width: min(100%, 980px);
+        margin: 0 auto;
+        padding: 18px 20px 0;
+      }
+
+      .countdown {
+        margin-top: 18px;
+        padding: 22px 18px 20px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.18);
+        box-shadow: var(--shadow);
+      }
+
+      .section-title {
+        margin: 0 0 16px;
+        text-align: center;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        letter-spacing: 0.04em;
+        color: var(--gold-soft);
+        text-transform: uppercase;
+      }
+
+      .countdown-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(110px, 1fr));
+        gap: 12px;
+        max-width: 820px;
+        margin: 0 auto;
+      }
+
+      .time-box {
+        background: rgba(212, 175, 55, 0.04);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 16px 12px;
+        text-align: center;
+      }
+
+      .time-value {
+        display: block;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-size: clamp(2rem, 3vw, 3rem);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: var(--gold);
+        line-height: 1;
+      }
+
+      .time-label {
+        display: block;
+        margin-top: 8px;
+        font-size: 0.82rem;
+        letter-spacing: 0.12em;
+        text-transform: lowercase;
+        color: var(--muted);
+      }
+
+      .info-block {
+        margin-top: 18px;
+        padding: 22px 18px 18px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(0, 0, 0, 0.14);
+        box-shadow: var(--shadow);
+      }
+
+      .info-text {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+        color: var(--muted);
+        line-height: 1.8;
+        font-size: 1.08rem;
+      }
+
+      .info-text strong {
+        color: var(--gold-soft);
+      }
+
+      .form-panel {
+        margin-top: 18px;
+        padding: 14px 20px 50px;
+      }
+
+      .form-shell {
+        max-width: 900px;
+        margin: 0 auto;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 22px 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .form-panel h2 {
+        margin: 0 0 22px;
+        color: var(--gold-soft);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-weight: 500;
+        text-align: center;
+        font-size: clamp(2.1rem, 4vw, 3.2rem);
+        text-transform: uppercase;
+      }
+
+      form {
+        display: grid;
+        gap: 20px;
+      }
+
+      .field {
+        display: grid;
+        gap: 10px;
+      }
+
+      label {
+        color: var(--gold-soft);
+        font-weight: 700;
+        font-style: italic;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        text-align: left;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        border-radius: 14px;
+        background: rgba(255,255,255,0.02);
+        color: var(--white);
+        padding: 14px 16px;
+        font-size: 1rem;
+        outline: none;
+      }
+
+      input:focus,
+      textarea:focus {
+        border-color: var(--gold);
+        box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.12);
+      }
+
+      textarea {
+        min-height: 140px;
+        resize: vertical;
+      }
+
+      .submit-wrapper {
+        display: flex;
+        justify-content: center;
+      }
+
+      @media (max-width: 860px) {
+        .hero {
+          min-height: auto;
+          padding-top: 28px;
+        }
+
+        .countdown-grid {
+          grid-template-columns: repeat(2, minmax(120px, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <section class="hero" id="cover">
+        <div class="hero-content">
+          <div class="eyebrow">30° compleanno</div>
+          <h1>Sei invitato al mio trentesimo</h1>
+
+          <div class="cta-row">
+            <a class="cta" href="#form">compila il form</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-shell">
+        <section class="countdown" aria-label="Conto alla rovescia">
+          <h2 class="section-title">Conto alla rovescia</h2>
+          <div class="countdown-grid">
+            <div class="time-box"><span class="time-value" id="months">00</span><span class="time-label">mesi</span></div>
+            <div class="time-box"><span class="time-value" id="days">00</span><span class="time-label">giorni</span></div>
+            <div class="time-box"><span class="time-value" id="hours">00</span><span class="time-label">ore</span></div>
+            <div class="time-box"><span class="time-value" id="minutes">00</span><span class="time-label">minuti</span></div>
+            <div class="time-box"><span class="time-value" id="seconds">00</span><span class="time-label">secondi</span></div>
+          </div>
+        </section>
+
+        <section class="info-block" aria-label="Dove andiamo">
+          <h2 class="section-title">Dove andiamo?</h2>
+          <div class="info-text">
+            <p><strong>Giorno:</strong> 01 Novembre 2026</p>
+            <p><strong>Orario:</strong> 14:00</p>
+            <p><strong>Luogo:</strong> Agriturismo</p>
+            <p><strong>Indirizzo:</strong> ---</p>
+          </div>
+        </section>
+
+        <section class="info-block" aria-label="Aiuto contributi">
+          <h2 class="section-title">Sono troppo complicato? Ti aiuto io</h2>
+          <div class="info-text">
+            <p>Ho aperto una lista in agenzia, se vuoi contribuire di seguito i dettagli:</p>
+            <p><strong>Tramite bonifico all’IBAN:</strong> IT95I0760103400001055373912 intestato a Salufra di Acciarino Antonio.</p>
+            <p><strong>Tramite ricarica Postepay evolution business:</strong><br />numero 5548 1100 0156 6715 – codice fiscale: CCRNTN73T23F839Q</p>
+            <p><strong>In sede:</strong> Salufra Viaggi - Via Salvatore Battaglia 3/B – 80145 (Napoli)</p>
+            <p><strong>Causale da usare:</strong> Per Nola da “*Scrivi il tuo nome*” (è importante rispettare questa denominazione per avere un corretto tracciamento. Prestate attenzione, grazie).</p>
+            <p><strong>Contatti agenzia:</strong> 0813765877 – 366172410</p>
+          </div>
+        </section>
+
+        <section class="form-panel" id="form">
+          <div class="form-shell">
+            <h2>Modulo di conferma</h2>
+            <form>
+              <div class="field">
+                <label for="componenti">componenti</label>
+                <input id="componenti" type="text" placeholder="Inserisci i componenti" />
+              </div>
+
+              <div class="field">
+                <label for="richieste">richieste</label>
+                <input id="richieste" type="text" placeholder="Inserisci richieste o preferenze" />
+              </div>
+
+              <div class="field">
+                <label for="note">note</label>
+                <textarea id="note" placeholder="Scrivi eventuali note"></textarea>
+              </div>
+
+              <div class="submit-wrapper">
+                <button type="submit" class="submit-btn">Invia</button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      const targetDate = new Date('2026-11-01T14:00:00');
+
+      function updateCountdown() {
+        const now = new Date();
+        let diff = targetDate - now;
+
+        if (diff <= 0) {
+          diff = 0;
+        }
+
+        const totalSeconds = Math.floor(diff / 1000);
+
+        const months = Math.floor(totalSeconds / (30 * 24 * 60 * 60));
+        const days = Math.floor((totalSeconds % (30 * 24 * 60 * 60)) / (24 * 60 * 60));
+        const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
+        const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+        const seconds = totalSeconds % 60;
+
+        document.getElementById('months').textContent = String(months).padStart(2, '0');
+        document.getElementById('days').textContent = String(days).padStart(2, '0');
+        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>
