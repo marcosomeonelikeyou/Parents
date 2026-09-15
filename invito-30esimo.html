@@ -88,13 +88,14 @@
         margin: 10px 0 20px;
         font-family: "Cormorant Garamond", Georgia, serif;
         font-weight: 500;
-        font-size: clamp(1.9rem, 3.2vw, 3.3rem);
+        font-size: clamp(1.55rem, 5.2vw, 3.3rem);
         line-height: 0.95;
         letter-spacing: 0.03em;
         color: var(--gold-soft);
         text-transform: uppercase;
         text-shadow: 0 4px 18px rgba(0,0,0,0.28);
-        white-space: nowrap;
+        white-space: normal;
+        max-width: 100%;
       }
 
       .gold {
@@ -319,11 +320,36 @@
         }
 
         .hero h1 {
-          font-size: clamp(1.3rem, 6vw, 2rem);
+          font-size: clamp(1.35rem, 7vw, 2.2rem);
+          max-width: 88vw;
         }
 
         .countdown-grid {
           grid-template-columns: repeat(2, minmax(120px, 1fr));
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero {
+          width: min(calc(100% - 18px), 940px);
+          padding-left: 14px;
+          padding-right: 14px;
+        }
+
+        .hero-content {
+          width: 100%;
+        }
+
+        h1 {
+          font-size: clamp(1.35rem, 8.8vw, 1.9rem);
+          letter-spacing: 0.02em;
+          line-height: 1;
+          max-width: 92vw;
+        }
+
+        .eyebrow {
+          letter-spacing: 0.1em;
+          font-size: 0.56rem;
         }
       }
     </style>
