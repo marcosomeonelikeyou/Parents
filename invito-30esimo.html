@@ -400,20 +400,20 @@
         <section class="form-panel" id="form">
           <div class="form-shell">
             <h2>Modulo di conferma</h2>
-            <form>
+            <form id="confirmForm" action="mailto:marck-96@live.it" method="post" enctype="text/plain">
               <div class="field">
                 <label for="componenti">componenti</label>
-                <input id="componenti" type="text" placeholder="Inserisci i componenti" />
+                <input id="componenti" name="componenti" type="text" placeholder="Inserisci i componenti" required />
               </div>
 
               <div class="field">
                 <label for="richieste">richieste</label>
-                <input id="richieste" type="text" placeholder="Inserisci richieste o preferenze" />
+                <input id="richieste" name="richieste" type="text" placeholder="Inserisci richieste o preferenze" required />
               </div>
 
               <div class="field">
                 <label for="note">note</label>
-                <textarea id="note" placeholder="Scrivi eventuali note"></textarea>
+                <textarea id="note" name="note" placeholder="Scrivi eventuali note"></textarea>
               </div>
 
               <div class="submit-wrapper">
@@ -450,6 +450,26 @@
         document.getElementById('minutes').textContent = String(minutes);
         document.getElementById('seconds').textContent = String(seconds);
       }
+
+      const form = document.getElementById('confirmForm');
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const componenti = document.getElementById('componenti').value.trim();
+        const richieste = document.getElementById('richieste').value.trim();
+        const note = document.getElementById('note').value.trim();
+
+        const recipient = 'marck-96@live.it';
+        const subject = encodeURIComponent('Conferma invito 30° compleanno');
+        const body = encodeURIComponent(
+          'Componenti:\n' + (componenti || 'Non specificato') + '\n\n' +
+          'Richieste:\n' + (richieste || 'Non specificato') + '\n\n' +
+          'Note:\n' + (note || 'Nessuna nota')
+        );
+
+        window.location.href = 'mailto:' + recipient + '?subject=' + subject + '&body=' + body;
+      });
 
       updateCountdown();
       setInterval(updateCountdown, 1000);
